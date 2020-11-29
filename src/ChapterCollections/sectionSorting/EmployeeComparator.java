@@ -4,8 +4,13 @@ import java.util.Comparator;
 
 public class EmployeeComparator {
 
+   static String a ="11";
 
     public static Comparator<ProgrammerEmployee> employeeComparator(String pmSortingBy) {
+        System.out.println(a);
+          a = a.concat("2");
+
+        System.out.println(a);
         return switch (pmSortingBy) {
             case "name" -> new SortByName();
             case "salary" -> new SortBySalary();
@@ -18,6 +23,10 @@ public class EmployeeComparator {
     static class SortByName implements Comparator<ProgrammerEmployee> {
 
         @Override public int compare(ProgrammerEmployee o1, ProgrammerEmployee o2) {
+
+
+
+
             return o1.getOwnName()
                     .compareTo(o2.getOwnName());
         }
