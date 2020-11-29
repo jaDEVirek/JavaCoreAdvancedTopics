@@ -1,8 +1,25 @@
 package ChapterCollections.sectionFiltring;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class NamesData {
-    String[] dataNames = {"Harper",
+
+
+    public static List<Person> prepareDataNames(){
+        Random oRandom = new Random();
+        List<Person> personList = new ArrayList<>();
+        for (int i=0; i<500_000;i++){
+            String firstName = dataNames[oRandom.nextInt(dataNames.length-1)];
+            String secondName= dataNames[oRandom.nextInt(dataNames.length-1)];
+            personList.add(new Person(firstName,secondName));
+        }
+        return personList;
+    }
+
+    private static final String[] dataNames = {"Harper",
             "Evelyn",
             "Abigail",
             "Emily",

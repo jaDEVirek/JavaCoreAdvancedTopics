@@ -5,16 +5,11 @@ import java.util.Map;
 
 public class MapDemo {
 
-static String a= "nono null";
     public static void main(String[] args) {
-        Map<String,String> testMap = new HashMap<>();
+        Map<String, String> testMap = new HashMap<>();
 
-        testMap.put(null,"something");
-        testMap.put(null,"something");
-        System.out.println(a);
-         a = "times";
+        testMap.put(null, "something");
+        testMap.put(null, "something");
 
-        System.out.println(a);
-        testMap.forEach((k,v) -> System.out.println(k+" value " + v ) );
-     }
+    }
 }
