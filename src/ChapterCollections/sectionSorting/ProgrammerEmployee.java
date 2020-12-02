@@ -61,4 +61,20 @@ public class ProgrammerEmployee implements Comparable<ProgrammerEmployee> {
             return 0;
         }
     }
+
+    @Override public String toString() {
+        String sb = "ProgrammerEmployee{" + "ownName='" +
+                ownName +
+                '\'' +
+                ", ownCompanyName='" +
+                ownCompanyName +
+                '\'' +
+                ", ownSalary=" +
+                ownSalary +
+                ", ownPosition='" +
+                ownPosition +
+                '\'' +
+                '}';
+        return sb;
+    }
 }

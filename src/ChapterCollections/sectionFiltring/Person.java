@@ -5,6 +5,12 @@ public class Person {
     private String fName;
     private String sName;
 
+    @Override public String toString() {
+        return "Person{" +
+                "fName='" + fName + '\'' +
+                ", sName='" + sName + '\'' +
+                '}';
+    }
 
     public Person(String fName, String sName) {
         this.fName = fName;

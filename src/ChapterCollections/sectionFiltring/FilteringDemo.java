@@ -1,7 +1,6 @@
 package ChapterCollections.sectionFiltring;
 
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -12,20 +11,28 @@ public class FilteringDemo {
 
     public static void main(String[] args) {
         FilteringDemo filteringDemo = new FilteringDemo();
-        System.out.println();
+        filteringDemo.iteratorFiltering();
     }
 
     public void iteratorFiltering() {
+        List<Person> personList = new ArrayList<>();
+        int randomInt = new Random().nextInt(40)+10;
+        System.out.println("Before remove size" + personList.size());
+
         Iterator<Person> iterator = NamesData.prepareDataNames()
                 .listIterator();
-        while (iterator.hasNext()) {
+        while (iterator.hasNext() && randomInt >= 1) {
+            --randomInt;
             Person person = iterator.next();
-            System.out.println(person);
+            System.out.println(person.toString());
             if (person.getfName()
                     .contains("a")) {
+                personList.add(person);
                 iterator.remove();
             }
         }
+        System.out.println("After remove " + personList.toString());
+        System.out.println("After remove size" + personList.size());
     }
 
     public void removeIf() {
