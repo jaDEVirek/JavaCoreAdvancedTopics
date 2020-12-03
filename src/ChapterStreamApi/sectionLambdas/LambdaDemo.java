@@ -7,7 +7,7 @@ public class LambdaDemo {
 
 
 
-    static List<String> dataJobs = new ArrayList<>(){
+    static List<Jobs> dataJobs = new ArrayList<>(){
         {
               add(new Jobs("Teach Lead"));
               add(new Jobs("Experience Android Developer"));

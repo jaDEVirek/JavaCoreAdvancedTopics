@@ -1,6 +1,17 @@
 package ChapterStreamApi.sectionLambdas;
 
 public class Jobs {
-    public Jobs(String teach_lead) {
+
+    String jobType;
+
+
+
+    public Jobs(String jobType) {
+        this.jobType = jobType;
     }
+
+
+
+
+
 }
