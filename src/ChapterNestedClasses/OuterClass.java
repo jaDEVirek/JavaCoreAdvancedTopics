@@ -1,8 +1,8 @@
-package ChapterStreamApi;
+package ChapterNestedClasses;
 
 public class OuterClass {
 
-    public class InnerClass2 {
+    public static class InnerClass2 {
     }
 
     private InnerClass2 instantiate() {
@@ -18,6 +18,15 @@ public class OuterClass {
         InnerClass2 inner34 = new OuterClass().instantiate();
 
         System.out.println(inner34.getClass().toString());
+    }
+
+
+    private void tryInstantiate(){
+        InnerClass2 inner = new InnerClass2();
+        instantiate();
+       InnerClass2 in2=  new OuterClass().instantiate();
+       OuterClass.InnerClass2 in3 = new InnerClass2();
+        System.out.println(in2);
     }
 }
 
