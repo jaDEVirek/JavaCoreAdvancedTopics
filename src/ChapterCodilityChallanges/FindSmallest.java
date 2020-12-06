@@ -1,8 +1,6 @@
-package ChapterStreamApi.sectionStreamOperations;
+package ChapterCodilityChallanges;
 
 
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,13 +10,19 @@ public class FindSmallest {
 
 
     public static void main(String[] args) {
-        int array1[] = new int[]{1,3,6,4,1,2};
-        int array2[] = new int[]{1,2,3};
-        int array3[] = new int[]{-1,-2,-3};
+        int[] array1 = new int[]{1,3,6,4,1,2};
+        int[] array2 = new int[]{1,2,3};
+        int[] array3 = new int[]{-1,-2,-3,12,2};
+        int[] array4 = new int[]{-1,-2,-3,-11,1};
 
+        System.out.println("Bad solution - progress");
         System.out.println(new FindSmallest().solution(array1));;
         System.out.println(new FindSmallest().solution(array2));;
-        System.out.println(new FindSmallest().solution(array3));;
+        System.out.println("Other solution: ");
+        System.out.println(new FindSmallest().newSolution(array3));;
+        System.out.println(new FindSmallest().newSolution(array2));;
+        System.out.println(new FindSmallest().newSolution(array1));;
+        System.out.println(new FindSmallest().newSolution(array4));;
     }
 
     public int solution(int[] arr){
@@ -52,10 +56,22 @@ public class FindSmallest {
 
         Integer integer = integers.get(integers.size()-1);
         System.out.println("Get " + integer);
-        if(integer == max - 1 && integer >0){
+        if(integer== max -1  && integer >0 && integer > integers.get(0)){
             return findMin(max-1,integers);
         }else{
             return max-1;
         }
+    }
+
+    public int newSolution(int []array){
+        Set<Integer> set = new HashSet<>();
+        int min=1;
+        for (int value : array) {
+            set.add(value);
+        }
+        while(set.contains(min)){
+            min++;
+        }
+        return min;
     }
 }
