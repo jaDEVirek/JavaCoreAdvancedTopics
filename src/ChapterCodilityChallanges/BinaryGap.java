@@ -1,9 +1,5 @@
 package ChapterCodilityChallanges;
-
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -55,9 +51,9 @@ public class BinaryGap {
 
     @Test
     public void checkSolution() {
-     //   assertEquals(3, new BinaryGap().solution(561892));
+        assertEquals(3, new BinaryGap().solution(561892));
         assertEquals(0, new BinaryGap().solution(32));
-     //   assertEquals(0, new BinaryGap().solution(15));
-     //   assertEquals(4, new BinaryGap().solution(529));
+        assertEquals(0, new BinaryGap().solution(15));
+        assertEquals(4, new BinaryGap().solution(529));
     }
 }
