@@ -5,15 +5,19 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Codility binaryGap solution
+ *
+ * 100% worked
+ * may got problem of optimalization complexity time
+ * pessimistic solution is O(n^2) bcs of two iteration based.
  */
 public class BinaryGap {
 
     public static void main(String[] args) {
-
+        new BinaryGap().solution(32);
+        new BinaryGap().solution(529);
+        new BinaryGap().solution(1041);
     }
 
-
-    //basic solution
     public int solution(int N) {
         int binary[] = new int[100];
         int it = 0;
@@ -25,18 +29,14 @@ public class BinaryGap {
             N = N / 2;
             it++;
         }
-//        List<int[]> ints = Arrays.asList(binary);
-//        System.out.println(ints.size());
-//        ints.stream().flatMapToInt(Arrays::stream).forEach(t -> System.out.print(t));
         for (int i = 0; i < binary.length - 1; i++) {
-            //find first 1
             if (binary[i] == 1) {
                 firstOne = i;
                 break;
             }
         }
         for (int j = firstOne; j < binary.length - 1; j++) {
-            if (binary[j + 1] == 0) {
+            if (binary[j +1] == 0) {
                 currentGap++;
             } else {
                 if (currentGap > maximalGap) {
@@ -45,9 +45,9 @@ public class BinaryGap {
                 currentGap = 0;
             }
         }
+        System.out.println(maximalGap);
         return maximalGap;
     }
-
 
     @Test
     public void checkSolution() {
@@ -55,5 +55,6 @@ public class BinaryGap {
         assertEquals(0, new BinaryGap().solution(32));
         assertEquals(0, new BinaryGap().solution(15));
         assertEquals(4, new BinaryGap().solution(529));
+        assertEquals(1, new BinaryGap().solution(111));
     }
 }
