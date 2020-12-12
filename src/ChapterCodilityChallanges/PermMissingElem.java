@@ -13,11 +13,15 @@ public class PermMissingElem {
 
     public static void main(String[] args) {
         int array[] = new int[]{2,3,1,5,6,4,8};
+        int array3[] = new int[]{5,6,4,8}; // with bad array !
         int array2[] = new int[]{2};
 
         int solution = new PermMissingElem().solution(array);
-        System.out.println(new PermMissingElem().solution(array2));
+        System.out.println(new PermMissingElem().solution(array3));
         System.out.println(solution);
+
+        System.out.println(new PermMissingElem().solutionByCheck(array));
+        System.out.println(new PermMissingElem().solutionByCheck(array3));
     }
 
     public int solution(int[] A){
@@ -45,12 +49,13 @@ public class PermMissingElem {
     }
 
     public int solutionByCheck(int[] A) {
-        int missing = 1; // missing number 1 already
+        int missing = 1;
         Arrays.sort(A);
-
+        System.out.println(Arrays.toString(A));
         // check numbers one by one
         for (int i = 0; i < A.length; i++) {
             if (A[i] == missing) {    // we found the missing number !
+                System.out.println("found!");
                 missing = A[i]+1;    // add +1 and keep checking
             }
         }
