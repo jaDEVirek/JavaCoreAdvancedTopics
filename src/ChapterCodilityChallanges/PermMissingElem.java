@@ -40,8 +40,8 @@ public class PermMissingElem {
         int count = 1;
         Arrays.sort(A);
 
-        for (int i = 0; i < size; i++) {
-            if (A[i] != count)
+        for (int value : A) {
+            if (value != count)
                 return count;
             count++;
         }
@@ -53,10 +53,10 @@ public class PermMissingElem {
         Arrays.sort(A);
         System.out.println(Arrays.toString(A));
         // check numbers one by one
-        for (int i = 0; i < A.length; i++) {
-            if (A[i] == missing) {    // we found the missing number !
+        for (int value : A) {
+            if (value == missing) {    // we found the missing number !
                 System.out.println("found!");
-                missing = A[i]+1;    // add +1 and keep checking
+                missing = value + 1;    // add +1 and keep checking
             }
         }
         return missing;
