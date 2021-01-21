@@ -2,14 +2,15 @@ package ChapterJDBC.Connector;
 
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class JDBConnector {
-    public final static String dbUrl= "";
+
+
     public static void main(String[] args) {
-//        try(Connection con = )
+        try(Connection con = DriverManager.getConnection()){
+
+        }
     }
 
-    private void testMeetod(){
-       String save = dbUrl;
-    }
 }
