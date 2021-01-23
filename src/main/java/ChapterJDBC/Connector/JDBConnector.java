@@ -8,8 +8,12 @@ public class JDBConnector {
 
 
     public static void main(String[] args) {
-        try(Connection con = DriverManager.getConnection()){
-
+        try (SettingLoader settings = SettingLoader.loadSettingsFromFile(
+                "file"); Connection con = DriverManager.getConnection(settings.getUrl(), settings.getUserName(),
+                settings.getPassword())) {
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

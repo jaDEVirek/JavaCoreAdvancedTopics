@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 
-public class SettingLoader {
+public class SettingLoader implements AutoCloseable {
 
     private static Properties properties = new Properties();
     private String url;
@@ -28,10 +28,7 @@ public class SettingLoader {
     }
 
     public String getUrl() {
-        if (Objects.isNull(url)) {
-            return ""
-        }
-        return url;
+        return Objects.isNull(url) ? "" : url;
     }
 
     public String getUserName() {
@@ -42,5 +39,8 @@ public class SettingLoader {
         return password;
     }
 
+    @Override public void close() {
+        this.close();
+    }
 }
 
