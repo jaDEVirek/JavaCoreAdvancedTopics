@@ -14,10 +14,11 @@ public class SettingLoader implements AutoCloseable {
     private String password;
 
 
-    public static SettingLoader loadSettingsFromFile(String fileName) throws IOException {
-        properties.load(new FileInputStream(fileName));
+    public static SettingLoader loadSettingsFromFile(String fileName) throws IOException, ClassNotFoundException {
+        properties.load(new FileInputStream("src/main/resources/"+fileName));
         SettingLoader settingLoader = new SettingLoader();
         settingLoader.setDatabaseConfig();
+        Class.forName("com.mysql.jdbc.Driver");
         return settingLoader;
     }
 
