@@ -8,9 +8,9 @@ public class ChapterRunner {
 
     public static void main(String[] args) {
         CheapParcel cheapParcel = new CheapParcel();
-        cheapParcel.setCheap("11");
-        BaseParcel baseP = cheapParcel;
-        System.out.println(baseP.getPrice());
-
+         BaseParcel baseParcel = new BaseParcel();
+        System.out.println(baseParcel.getPrice(  cheapParcel.getPrice("11")));
     }
+
+
 }

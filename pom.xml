@@ -10,6 +10,22 @@
     <build>
         <plugins>
             <plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.4.7.v20170914</version>
+                    <configuration>
+                        <webApp>
+                            <contextPath>/${build.finalName}</contextPath>
+                        </webApp>
+                        <stopKey>CTRL+C</stopKey>
+                        <stopPort>8999</stopPort>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                        <scanTargets>
+                            <scanTarget>src/main/webapp/WEB-INF/web.xml</scanTarget>
+                        </scanTargets>
+                    </configuration>
+                </plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -19,5 +35,16 @@
             </plugin>
         </plugins>
     </build>
-
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.46</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+            <version>2.3.1.2</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -7,4 +7,7 @@ public class CheapParcel extends BaseParcel {
         this.cheap = cheap;
     }
 
+    @Override public String getPrice(String cheap) {
+        return super.getPrice(cheap);
+    }
 }
