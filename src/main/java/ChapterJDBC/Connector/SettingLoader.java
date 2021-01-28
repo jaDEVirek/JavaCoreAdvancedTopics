@@ -41,7 +41,7 @@ public class SettingLoader implements AutoCloseable {
     }
 
     @Override public void close() {
-        this.close();
+
     }
 }
 
