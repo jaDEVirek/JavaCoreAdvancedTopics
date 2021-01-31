@@ -40,7 +40,8 @@ public class SettingLoader implements AutoCloseable {
         return password;
     }
 
-    @Override public void close() {
+    @Override
+    public void close() {
 
     }
 }

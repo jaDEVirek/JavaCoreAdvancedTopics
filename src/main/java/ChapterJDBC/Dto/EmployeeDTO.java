@@ -18,6 +18,10 @@ public class EmployeeDTO {
         this.birthDay = birthDay;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String fName;
         private String lName;
@@ -25,17 +29,12 @@ public class EmployeeDTO {
         private String salary;
         private BigDecimal birthDay;
 
-
-        public static Builder builder() {
-            return new Builder();
-        }
-
         public EmployeeDTO build() {
             return new EmployeeDTO(fName, lName, gender, salary, birthDay);
         }
 
         public Builder setBirthDay(BigDecimal birthDay) {
-            this.birthDay=birthDay;
+            this.birthDay = birthDay;
             return this;
         }
 
@@ -55,7 +54,7 @@ public class EmployeeDTO {
         }
 
         public Builder setGender() {
-            this.gender=gender;
+            this.gender = gender;
             return this;
         }
     }

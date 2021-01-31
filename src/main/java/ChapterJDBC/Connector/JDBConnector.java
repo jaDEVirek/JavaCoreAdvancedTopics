@@ -1,6 +1,7 @@
 package ChapterJDBC.Connector;
 
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +26,7 @@ public class JDBConnector {
             System.out.println(result);
             System.out.println(getUnion(statement));
             System.out.println(getNameSubQuery(statement));
+            System.out.println(getSQLJoin(statement));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,6 +49,17 @@ public class JDBConnector {
         List<String> result = new ArrayList<>();
         while(resultSet.next()){
             result.add(resultSet.getString("client_name"));
+        }
+        return result.toString();
+    }
+
+    private static String getSQLJoin(Statement statement) throws SQLException {
+        ResultSet resultSet = statement.executeQuery(
+                "SELECT  client.client_id, client.client_name, branch_supplier.supplier_name FROM CLIENT JOIN branch_supplier on client.branch_id = branch_supplier.branch_id GROUP BY client_id, supplier_name ");
+        List<String> result = new ArrayList<>();
+        while(resultSet.next()){
+            String s = resultSet.getString(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3);
+            result.add(s);
         }
         return result.toString();
     }
