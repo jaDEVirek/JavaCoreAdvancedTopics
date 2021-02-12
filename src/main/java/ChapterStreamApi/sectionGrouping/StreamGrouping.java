@@ -2,8 +2,14 @@ package ChapterStreamApi.sectionGrouping;
 
 public class StreamGrouping {
 
-    public static void main(String[] args) {
 
+     private  static class Tuple {
+        BlogPostType type;
+        String author;
     }
 
+    public  Tuple Tuple(String[] args) {
+     return new StreamGrouping.Tuple();
+    }
 }
+
