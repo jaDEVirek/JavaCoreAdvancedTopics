@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class DAOEmployee {
       String tableName;
-    public String insertEmployee(EmployeeDTO employee, Connection con) throws SQLException {
-        String sql = " %'tableName' INSERT INTO employee VALUES (?,?,?,?,?)";
-        con.prepareStatement(sql);
-    }
+   // public String insertEmployee(EmployeeDTO employee, Connection con) throws //SQLException {
+   //     String sql = " %'tableName' INSERT INTO employee VALUES (?,?,?,?,?)";
+ //       con.prepareStatement(sql);
+  //  }
 
 }

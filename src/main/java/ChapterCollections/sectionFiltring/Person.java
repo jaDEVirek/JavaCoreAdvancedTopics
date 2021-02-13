@@ -1,6 +1,22 @@
 package ChapterCollections.sectionFiltring;
 
+import ChapterJDBC.JsonMaping.Vehicle;
+
+import java.util.Calendar;
+import java.util.Collection;
+
 public class Person {
+
+    private Long id;
+    private Collection<Vehicle> vehicleList;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     private String fName;
     private String sName;
@@ -31,5 +47,9 @@ public class Person {
 
     public void setsName(String sName) {
         this.sName = sName;
+    }
+
+    public Collection<Vehicle> getListOfOwnedVehicles() {
+        return this.vehicleList;
     }
 }
