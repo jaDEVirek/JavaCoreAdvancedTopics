@@ -1,18 +1,34 @@
 package ChapterJDBC.JsonMaping;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import org.codehaus.jackson.map.ObjectMapper;
 
-public class ClassFieldsExample<T extends  User> {
-    static List<String> test;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.*;
 
-    public static void main(String[] args) {
+public class ClassFieldsExample{
+
+
+    public static void main(String[] args) throws IllegalAccessException, IOException {
+        User user = new User();
+        user.setAge(11);
+        user.setName("Wiktor");
+        Map<String, String> stringStringMap = new ClassFieldsExample().prepareDataFromFields(user);
+        System.out.println(stringStringMap.toString());
+        ObjectMapper mapper = new ObjectMapper();
+        String s = mapper.writeValueAsString(stringStringMap);
+        System.out.println("JSON Format: " + s);
     }
 
-    private Map<String,String> prepareDataFromFields(Class<T extends User> data){
-
-        return null;
+    private  Map<String,String> prepareDataFromFields(Object data) throws IllegalAccessException {
+        Field[] fields = data.getClass().getDeclaredFields();
+        Map<String,String> mapFromFields = new HashMap<>();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if(field.get(data) == null ){
+            }else mapFromFields.put(field.getName(),field.get(data).toString());
+        }
+        return mapFromFields;
     }
 }
-}
+
