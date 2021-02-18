@@ -10,17 +10,20 @@ public class GenericsWildcards {
 
 
     public static void main(String[] args) {
-        GenericType<String> abc = new GenericType<>("Abc");
-        abc.set("bbc");
+        GenericType<String> abc = new GenericType<>("tommy");
+        abc.setTObject("bbc");
 
         GenericType genericType = new GenericType("1"); // raw
-        genericType.set("Objects");
-        genericType.set(11);
+        genericType.setTObject("Objects");
+        genericType.setTObject(11);
         genericType.addToList("11");
         genericType.addToList(5);
         genericType.getTypeList().forEach(
                 t-> System.out.println(t));
-        System.out.println(genericType.get());
+        System.out.println(genericType.getTObject());
+
+        boolean equal = isEqual(new GenericType().setTObject("tommy").getThis(), abc);
+        System.out.println(equal );
     }
 
     public static double sum(List<? extends Number> list){
@@ -39,9 +42,12 @@ public class GenericsWildcards {
 
     //Java Generic Method
     public static <T> boolean isEqual(GenericType<T> g1, GenericType<T> g2){
-        return g1.get().equals(g2.get());
+        return g1.getTObject().equals(g2.getTObject());
     }
 
-
+//    public static <? extends  Comparable<?>> int comparex(  Comparable<?> t1, Comparable<?> ex){
+//       // t1.compareTo(ex);
+//        return (int) t1.compareTo(ex);
+//    }
 
 }

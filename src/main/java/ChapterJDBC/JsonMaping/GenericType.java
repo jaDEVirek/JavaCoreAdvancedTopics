@@ -15,24 +15,30 @@ public class GenericType<T> {
             this.t=arg;
     }
 
-    public T get(){
+    public T getTObject(){
         return this.t;
     }
 
-    public void set(T t1){
+    public GenericType<T> setTObject(T t1){
         if(this.t == null)
         this.t=t1;
+        return this;
     }
 
     public List<T> getTypeList() {
         return typeList;
     }
 
-    public void setTypeList(List<T> typeList) {
+    public GenericType<T> setTypeList(List<T> typeList) {
         this.typeList = typeList;
+        return this;
     }
 
     public void addToList(T s) {
         this.typeList.add(s);
+    }
+
+    public GenericType<T> getThis(){
+        return this;
     }
 }
