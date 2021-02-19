@@ -1,5 +1,8 @@
 package ChapterJDBC.JsonMaping;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
@@ -18,8 +21,11 @@ public class JacksonExample {
         String jsonInString = mapper.writeValueAsString(user);
         System.out.println(jsonInString);
 
-        Field[] fields = user.getClass()
-                .getDeclaredFields();
+        // USING GSON and object
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("lista",createDummyUser().getMessages().toString());
+        System.out.println(new Gson().toJson(jsonObject));
+        System.out.println(StringUtils.isEmpty(null));
     }
 
     private static User createDummyUser() {
