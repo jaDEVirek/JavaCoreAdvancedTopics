@@ -1,6 +1,7 @@
 package ChapterJDBC.JsonMaping;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -20,28 +21,29 @@ public class JacksonExample {
         //Convert object to JSON string
         String jsonInString = mapper.writeValueAsString(user);
         System.out.println(jsonInString);
-
         // USING GSON and object
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("lista",createDummyUser().getMessages().toString());
+        jsonObject.addProperty("wartosc","sting");
+        jsonObject.addProperty("wartosc","null");
         System.out.println(new Gson().toJson(jsonObject));
         System.out.println(StringUtils.isEmpty(null));
+
+        System.out.println("Manipulation\n");
+       // JsonObject jsonObject1 = GsonManipulation.removeNullValuesFromJson(jsonObject);
+        String jsonObject1 = GsonManipulation.removeJsonNullsByEntry(jsonObject);
+        System.out.println(jsonObject1);
     }
 
     private static User createDummyUser() {
-
         User user = new User();
-
         user.setName("Wiktor");
         user.setAge(25);
-
         List<String> msg = new ArrayList<>();
         msg.add("hello jackson 1");
         msg.add("hello jackson 2");
         msg.add("hello jackson 3");
-
         user.setMessages(msg);
-
         return user;
     }
 }
