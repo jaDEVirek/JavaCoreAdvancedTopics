@@ -13,7 +13,6 @@ public class GsonManipulation {
 //        removeNullValuesFromJson();
     }
 
-
     private static GsonManipulation initGenericUser(User user){
         GsonManipulation gsonManipulation = new GsonManipulation();
         gsonManipulation.genericUser = new GenericType<>();
@@ -31,17 +30,18 @@ public class GsonManipulation {
         return jsonObject;
     }
 
-    public static String removeJsonNullsByEntry(JsonObject jsonObject){
+    public static JsonObject changeNullValueToEmptyFromEntry(JsonObject jsonObject){
         jsonObject.entrySet().forEach( val -> {
             if(val.getValue().getAsString().equals("null")){
-                jsonObject.addProperty(val.getKey(),"NieNUll");
+                jsonObject.addProperty(val.getKey(),"");
             }
         });
-        System.out.println(jsonObject);
-        System.out.println(jsonObject.toString().contains("NieNUll"));
-        String s = jsonObject.toString()
-                .replaceAll("NieNUll", "powdójnaZmiana");
-        return s;
+        return jsonObject;
+    }
+
+    public static String getSJsonAsStringWithoutNullVal(JsonObject jsonObject){
+        return jsonObject.toString()
+                .replaceAll("null", "");
     }
 }
 
