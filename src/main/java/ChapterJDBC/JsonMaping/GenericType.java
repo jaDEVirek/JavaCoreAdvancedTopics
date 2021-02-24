@@ -41,4 +41,9 @@ public class GenericType<T> {
     public GenericType<T> getThis(){
         return this;
     }
+
+    public static String showStringStatic(){
+        System.out.println("From static");
+        return "this-static";
+    }
 }

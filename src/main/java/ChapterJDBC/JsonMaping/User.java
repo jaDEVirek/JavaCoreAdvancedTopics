@@ -2,11 +2,22 @@ package ChapterJDBC.JsonMaping;
 
 import java.util.List;
 
-public class User {
+public class User extends GenericType<String> {
 
     private String name;
     private int age;
     private List<String> messages;
+
+    public User() {
+    }
+
+    public User(String name, int age, List<String> messages) {
+        super();
+        showStringStatic();
+        this.name = name;
+        this.age = age;
+        this.messages = messages;
+    }
 
     public String getName() {
         return name;

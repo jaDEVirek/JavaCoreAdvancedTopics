@@ -1,8 +1,15 @@
 package ChapterNestedClasses;
 
 public class OuterClass {
+    private String LocalString;
 
-    public static class InnerClass2 {
+    public class InnerClass2 {
+
+        public  void myMethod(){
+            OuterClass outerClass = new OuterClass();
+            System.out.println( outerClass.LocalString);
+        localString;
+        }
     }
 
     private InnerClass2 instantiate() {
