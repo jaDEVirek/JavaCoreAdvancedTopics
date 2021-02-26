@@ -3,12 +3,13 @@ package ChapterNestedClasses;
 public class OuterClass {
     private String LocalString;
 
-    public class InnerClass2 {
+    public static class InnerClass2 {
 
-        public  void myMethod(){
+        public void myMethod() {
             OuterClass outerClass = new OuterClass();
-            System.out.println( outerClass.LocalString);
-        localString;
+            System.out.println(outerClass.LocalString);
+            System.out.println(outerClass instanceof OuterClass);
+
         }
     }
 
@@ -24,17 +25,16 @@ public class OuterClass {
         OuterClass.InnerClass2 inner3 = new InnerClass2();
         InnerClass2 inner34 = new OuterClass().instantiate();
 
-        System.out.println(inner34.getClass().toString());
+        System.out.println(inner34.getClass()
+                .toString());
     }
 
-
-    private void tryInstantiate(){
+    private void tryInstantiate() {
         InnerClass2 inner = new InnerClass2();
         instantiate();
-       InnerClass2 in2=  new OuterClass().instantiate();
-       OuterClass.InnerClass2 in3 = new InnerClass2();
+        InnerClass2 in2 = new OuterClass().instantiate();
+        OuterClass.InnerClass2 in3 = new InnerClass2();
         System.out.println(in2);
     }
 }
-
 

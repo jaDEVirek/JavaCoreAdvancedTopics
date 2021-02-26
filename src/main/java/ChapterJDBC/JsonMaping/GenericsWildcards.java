@@ -6,7 +6,7 @@ import java.util.List;
  *
  *
  */
-public class GenericsWildcards {
+public class GenericsWildcards  {
 
 
     public static void main(String[] args) {
@@ -24,6 +24,7 @@ public class GenericsWildcards {
 
         boolean equal = isEqual(new GenericType().setTObject("tommy").getThis(), abc);
         System.out.println(equal );
+        GenericsWildcards.printData(List.of(1,2,3));
     }
 
     public static double sum(List<? extends Number> list){

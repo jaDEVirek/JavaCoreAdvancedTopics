@@ -11,7 +11,7 @@ public class JacksonExample {
     public static void main(String[] args) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
-
+        GenericsWildcards.sum(List.of(1,2,3));
         //For testing
         User user = createDummyUser();
         //Convert object to JSON string
