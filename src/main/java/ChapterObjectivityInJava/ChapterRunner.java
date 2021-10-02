@@ -4,10 +4,10 @@ package ChapterObjectivityInJava;
 import ChapterObjectivityInJava.InheritanceTopic.AbstractPerson;
 import ChapterObjectivityInJava.InheritanceTopic.BaseParcel;
 import ChapterObjectivityInJava.InheritanceTopic.CheapParcel;
-import javassist.runtime.Inner;
+
 
 public class ChapterRunner extends AbstractPerson {
-
+    String localString = "newLocal";
 
     public ChapterRunner(String nm, String gen) {
         super(nm, gen);
@@ -18,14 +18,13 @@ public class ChapterRunner extends AbstractPerson {
          BaseParcel baseParcel = new BaseParcel();
          System.out.println(baseParcel.getPrice(  cheapParcel.getPrice("11")));
         AbstractPerson abTest = new ChapterRunner("hno","hno");
-
 //        AbstractPerson ab = new AbstractPerson("Workon","Flow :)") {
 //            @Override
 //            public void work() {
 //                System.out.println(this.toString());
 //            }
 //        };
-      //   abTest.ch("Xd");
+      // s   abTest.ch("Xd");
     }
 
     public void changeName(String arg){
@@ -33,17 +32,3 @@ public class ChapterRunner extends AbstractPerson {
     }
 }
 
- class InnerRunner extends AbstractPerson{
-
-    public InnerRunner(String nm, String gen) {
-        super(nm, gen);
-    }
-
-//    @Override
-//    public void work() {
-//        System.out.println("Test");
-//        this.changeName("Change name from baseClass");
-//    }
-    // we cant ovveride but can hide class
-
-}

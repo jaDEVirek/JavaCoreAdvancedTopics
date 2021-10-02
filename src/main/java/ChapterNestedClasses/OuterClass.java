@@ -3,8 +3,8 @@ package ChapterNestedClasses;
 public class OuterClass {
     private String LocalString;
 
-    public static class InnerClass2 {
-
+   static class InnerClass2 {
+       String localString2;
         public void myMethod() {
             OuterClass outerClass = new OuterClass();
             System.out.println(outerClass.LocalString);
