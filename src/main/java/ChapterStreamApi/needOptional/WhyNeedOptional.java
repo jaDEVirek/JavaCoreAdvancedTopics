@@ -1,12 +1,15 @@
 package ChapterStreamApi.needOptional;
 
 
+import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class WhyNeedOptional {
-
+    private String storeData;
 
     public static void main(String[] args) {
         List<String> strings = List.of("1", "2", "5", "4");
@@ -21,6 +24,14 @@ public class WhyNeedOptional {
         System.out.println("No present: " + noPresent);
         System.out.println("Present: " + present);
 
+        List<Customer> customers = List.of(new Customer("Wiktor", null, null, 1));
+
+        System.out.println(whyNeedOptional.getCustomerByName(customers, null));
+        System.out.println(Optional.of("Test")
+                .get()
+                .equals("Test"));
+        whyNeedOptional.flatMappingCustomer(customers,"Wiktor");
+        System.out.println(whyNeedOptional.storeData);
     }
 
     /**
@@ -48,10 +59,26 @@ public class WhyNeedOptional {
 
 
     public String getCustomerByName(List<Customer> customers, String name) {
-        Optional<Customer> first = customers.stream()
+        return customers.stream()
                 .filter(c -> c.getfName()
                         .equals(name))
-                .findFirst();
-        return first.map(Customer::getfName).orElse("Not found");
+                .findFirst()
+                .map(Customer::getfName)
+                .orElse("Not found");
+    }
+
+    public void flatMappingCustomer(List<Customer> customers, String name) {
+        // we can use optional::... reference from JDK 9 when we have nested object wrapped by Optional
+        Stream<Optional<List<Customer>>> optionalStream = Optional.of(customers)
+                .stream()
+                .map(Optional::of);
+        List<Customer> customerStream = optionalStream.flatMap(Optional::stream)
+                .flatMap(Collection::stream).collect(Collectors.toList());
+
+            customerStream.stream().filter(t->t.getfName().equals(name)).findFirst().ifPresent(t->getNameOfUser(t.getfName()));
+    }
+    private String getNameOfUser(String userName){
+        this.storeData = userName;
+        return userName;
     }
 }
