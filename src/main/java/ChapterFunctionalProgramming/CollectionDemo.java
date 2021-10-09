@@ -87,6 +87,5 @@ public class CollectionDemo {
         List<String> arrayList = new ArrayList<String>(Arrays.asList(flowers));
         arrayList.add("new");
         System.out.println(arrayList);
-
     }
 }
