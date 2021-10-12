@@ -16,6 +16,11 @@ public class Customer {
         this.billAmount = billAmount;
     }
 
+    public Customer(String fName, String lName) {
+        this.fName = fName;
+        this.lName = lName;
+    }
+
     public String getfName() {
         return fName;
     }
@@ -59,5 +64,17 @@ public class Customer {
 
     @Override public int hashCode() {
         return Objects.hash(getfName(), getlName(), getCustomerAddress(), getBillAmount())*31/7;
+    }
+
+    @Override public String toString() {
+        final StringBuffer sb = new StringBuffer("Customer{");
+        sb.append("fName='")
+                .append(fName)
+                .append('\'');
+        sb.append(", lName='")
+                .append(lName)
+                .append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

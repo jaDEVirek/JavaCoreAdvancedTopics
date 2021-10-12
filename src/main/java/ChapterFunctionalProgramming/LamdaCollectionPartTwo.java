@@ -2,7 +2,10 @@ package ChapterFunctionalProgramming;
 
 import ChapterCollections.sectionFiltring.Person;
 import ChapterStreamApi.needOptional.Customer;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
@@ -23,10 +26,23 @@ public class LamdaCollectionPartTwo {
         customers.add(new Customer("Adam", "Eureka"));
         // we can use comparator comparing if our object not implements comparable
 //        Collections.sort(customers, Comparator.comparing(Customer::getfName));
-        customers.sort(new LamdaCollectionPartTwo().comapreBylName);
-        System.out.println(customers.toString());
+        //  customers.sort(new LamdaCollectionPartTwo().comapreBylName);
+        // System.out.println(customers.toString());
+//        Arrays.stream(Employee.initData())
+//                .sorted(Comparator.comparing(Employee::getId))
+//                .forEach(System.out::println);
+        Employee[] employees = Employee.initData();
+        Arrays.sort(employees);
+        Arrays.stream(employees)
+                .forEach(System.out::println);
 
+        Map<Integer, ? extends Serializable> integerMap = Map.of(1, "One", 2, "Two", 3, 3);
+        Map<Integer, ? extends Object> one = Map.ofEntries(Map.entry(1, "One"), Map.entry(2, 2));
 
+        Serializable serializable = integerMap.get(2);
+
+        System.out.println(serializable.toString());
+        System.out.println(integerMap);
     }
 
     Comparator<Customer> comapreBylName = new Comparator<>() {
@@ -66,6 +82,55 @@ public class LamdaCollectionPartTwo {
     public static PersonCollectorImpl toPersonCollectorList() {
         return new PersonCollectorImpl();
     }
+
+    public static void testingWithNulls() {
+
+        // Create a collection of an array
+        // of names also contain nulls
+        String[] strings = {"aman", "suvam",
+                null, "sahil",
+                null};
+
+        // print the array
+        System.out.println("Before sorting: "
+                + Arrays.toString(strings));
+
+        // apply nullsFirst method
+        // and sort the array
+        Arrays.sort(strings,
+                Comparator.nullsFirst(
+                        Comparator.naturalOrder()));
+
+        // print the array
+        System.out.println("After sorting: "
+                + Arrays.toString(strings));
+    }
 }
 
 
+@AllArgsConstructor
+@Data
+class Employee implements Comparator<Employee>, Comparable<Employee> {
+    int id;
+    String name;
+    double salary;
+    long mobile;
+
+
+    public static Employee[] initData() {
+        return new Employee[]{new Employee(1, "Jeff Bezos", 900000.0, 758566),
+                new Employee(2, "Bill Gates", 200000.0, 234232),
+                new Employee(3, "Mark Zuckerberg", 700000.0, 2342342),
+                new Employee(4, "Sunder Pichai", 400000.0, 34242222),
+                new Employee(5, "Tom Peterson", 400000.0, 8736432),
+                new Employee(6, "Zed Adams", 7600.0, 8736432)};
+    }
+
+    @Override public int compare(Employee o1, Employee o2) {
+        return (int) (o1.getSalary() - o2.getSalary());
+    }
+
+    @Override public int compareTo(Employee o) {
+        return  ((this.name).compareTo(o.getName()));
+    }
+}

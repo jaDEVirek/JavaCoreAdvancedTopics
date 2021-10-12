@@ -1,11 +1,13 @@
 package ChapterStreamApi.sectionLambdas;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class LambdaDemo {
+public class LambdaDemo<T> {
 
     static List<Jobs> dataJobs = new ArrayList<>() {
         {
@@ -34,9 +36,35 @@ public class LambdaDemo {
         Object o3 = new Object();
         List<Object> string = List.of(o, o2, o3, "string");
 
-        List<? super String> superString= string;
+        List<? super String> superString = string;
         System.out.println(superString.get(1));
 //        superString.add("test");
+        flatMapping();
 
+    }
+
+    public static  void flatMapping() {
+        List<Integer> list1 = Arrays.asList(1, 2, 3);
+        List<Integer> list2 = Arrays.asList(4, 5, 6);
+        List<Integer> list3 = Arrays.asList(7, 8, 9);
+
+        List<List<Integer>> listOfLists = Arrays.asList(list1, list2, list3);
+        Stream<Stream<Integer>> streamStream = listOfLists.stream()
+                .map(List::stream);
+        List<Stream<Integer>> collect = streamStream.collect(Collectors.toList());
+        Stream<Integer> integerStream2 = listOfLists.stream()
+                .flatMap(Collection::stream);
+        Stream<Boolean> booleanStream = collect.stream()
+                .map(t -> t.findFirst()
+                        .isPresent());
+        List<Boolean> collect1 = booleanStream.collect(Collectors.toList());
+        Integer integerStream = collect.stream()
+                .map(t -> t.reduce(1,(x,y)-> x/y)).reduce(1,Integer::sum);
+        System.out.println(integerStream);
+
+//                .flatMap(Stream::flatMap);
+//                .collect(Collectors.toList());
+
+//        System.out.println(integerStream);
     }
 }
