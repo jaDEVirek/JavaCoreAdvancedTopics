@@ -45,6 +45,7 @@ public class MapDemo {
         System.out.println(resizableMap);
         System.out.println("\n\n\n\nTEST SOLUTION: \n");
         solutionAttemptForMaps();
+        comparatorAndCollectorForMap();
     }
 
 
@@ -73,5 +74,31 @@ public class MapDemo {
         copyOfMapB.values().retainAll(new HashSet<>(mapA.values()));
         Set<Integer> values = copyOfMapB.keySet();
         System.out.println("with Retain ?" + values);
+    }
+
+    public static void comparatorAndCollectorForMap(){
+         // tree set is funny thing -> take care about contract equals vs comparator on tree set
+        Comparator<String> cro = String.CASE_INSENSITIVE_ORDER;
+        int compare = cro.compare("a", "a");
+        int compare2 = cro.compare("a", "A");
+        System.out.println("comapre: " + compare + " and compare2: "+ compare2);
+        //but
+        System.out.println("a".equals("A")); // always false !
+        var tree = new TreeSet<>(cro);
+        tree.addAll(List.of("MMM","aaa","rrr"));
+        System.out.println(tree);
+        // now take a look
+        System.out.println( tree.contains("mmm")  ); // TRUE -> FALSE if we not specify CRO in treeSET declaration
+        System.out.println( tree.contains("MMM")  ); // TRUE
+        var hash = new HashSet<>(tree);
+        System.out.println(hash);
+        System.out.println(hash.contains("MMM")); //true
+        System.out.println(hash.contains("mmm")); //false ! we not specify ordering, so we based on equality
+        //what about equality of two sets?
+        System.out.println(hash.equals(tree)); // true -> same values and all elements in A set is in B Set ? :)
+        hash.remove("MMM");
+        hash.add("mmm");
+        System.out.println(tree.equals(hash)); //true :D bcs tree set is based on cro ! MMM.compareTo(mmm)== 0
+        System.out.println(hash.equals(tree)); //FALSE based on equals
     }
 }
