@@ -9,7 +9,7 @@ public class AlphabetSonnetExample {
 
     private static List<String> alphabet =
             List.of("alfa", "bravo", "charlie", "delta", "echo",
-                    "foxtrot", "golf", "hotel", "india", "juliet",
+                    "foxtrot16", "golfv8", "hotel", "india", "juliet",
                     "kilo", "lima", "mike", "november", "oscar",
                     "papa", "quebec", "romeo", "sierra", "tango",
                     "uniform", "victor", "whiskey", "x-ray", "yankee",
