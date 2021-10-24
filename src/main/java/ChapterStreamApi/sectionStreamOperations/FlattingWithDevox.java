@@ -3,6 +3,7 @@ package ChapterStreamApi.sectionStreamOperations;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.function.IntUnaryOperator;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -10,6 +11,7 @@ import java.util.stream.IntStream;
 
 import static ChapterStreamApi.sectionStreamOperations.AlphabetSonnetExample.*;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 public class FlattingWithDevox {
 
@@ -18,6 +20,17 @@ public class FlattingWithDevox {
         splitSonnet();
         reductorExample();
         exerciseOfUnaryOperator();
+        System.out.println("\n____________________________________");
+        final Map<String, String> mapResult = getAlphabet().stream()
+                .collect(toMap(k -> String.valueOf(k.charAt(0)), v -> v));
+        System.out.println(mapResult);
+
+        //keys need to be unique .. so sonnet cant be mapped that way
+        final Map<Character, String> collect = getSonnet().stream()
+                .collect(toMap(k -> k.charAt(0), v -> v, (x,y) -> x.concat("\n").concat(y)));
+        System.out.println((long) collect.keySet()
+                .size());
+        System.out.println(collect);
     }
 
     public static void runWIthGivenWords() {
