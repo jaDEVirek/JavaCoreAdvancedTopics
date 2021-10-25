@@ -20,9 +20,13 @@ public class CollectingMapWithGroupingBy {
         System.out.println(expand("trello"));
         System.out.println(expandStr("trello"));
         // its importat that A is not same as a, so case of chararcter is important
-        countWordInSonetThenGetMax();
-        overTheIndexesInStream(4);
+//        countWordInSonetThenGetMax();
+//        overTheIndexesInStream(4);
+//        overlapbyIndexSubArrays(4);
+        nonDecreasingSubList();
+
     }
+
 
     public static void groupByLength() {
         // writing own groupingByLength
@@ -111,11 +115,43 @@ public class CollectingMapWithGroupingBy {
         System.out.println(collect1);
     }
 
-    public static void overTheIndexesInStream(int n) {
+
+    public static void overlapbyIndexSubArrays(int elemInArr) {
         final int size = getAlphabet().size();
-        final List<List<String>> collect = IntStream.range(0, (size + n - 1) / n)
-                .mapToObj(value -> getAlphabet().subList(value * n, Math.min( size,n * (value + 1))))
+        final List<List<String>> collect = IntStream.range(0, size - elemInArr + 1)
+                .mapToObj(index -> getAlphabet().subList(index, elemInArr + index))
                 .collect(toList());
+        System.out.println(collect);
+
+        //other way
+        final List<List<String>> collect1 = IntStream.rangeClosed(elemInArr, size)
+                .mapToObj(index -> getAlphabet().subList(index - elemInArr, index))
+                .collect(toList());
+        System.out.println(collect1);
+    }
+
+    public static void nonDecreasingSubList() {
+        final List<String> alphabet = getAlphabet();
+        final List<Integer> breakOfList = IntStream.range(1, alphabet.size())
+                .filter(item ->
+                        alphabet.get(item)
+                                .length() < alphabet.get(item - 1)
+                                .length()
+                )
+                .boxed()
+                .collect(toList());
+        System.out.println(breakOfList);
+
+        // we can add this things into breaks before for example  from line @line 152
+        breakOfList.add(0,0); // we adding index 0 at begining
+        breakOfList.add(alphabet.size()); // we adding index 0 at begining
+        System.out.println(breakOfList);
+        final List<List<String>> collect = IntStream.range(0,
+                breakOfList.size() - 1) // 0 to possition of elements to be divide
+                .mapToObj(i -> alphabet.subList(breakOfList.get(i), breakOfList.get(i + 1)))
+                .collect(toList());
+//        collect.add(0,alphabet.subList(0,breakOfList.get(0))); // we need add the last item.
+
         System.out.println(collect);
     }
 }
